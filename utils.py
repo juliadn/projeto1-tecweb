@@ -1,4 +1,5 @@
 import json
+from database import *
 
 def extract_route(request):
     return request.split()[1].lstrip('/')
@@ -7,13 +8,11 @@ def read_file(path):
     with open(path, 'rb') as f:
         return f.read()
     
-def load_data(file):
-    with open('data/' + file, 'r') as f:
-        text = f.read()
-        return json.loads(text)
+def load_data(db):
+    return db.get_all()
     
 def load_template(file):
-    with open('templates/' + file, 'r') as f:
+    with open('templates/' + file, 'r', encoding='utf-8') as f:
         return str(f.read())
     
 def adiciona(params):
